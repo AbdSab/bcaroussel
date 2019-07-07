@@ -1,0 +1,60 @@
+.caroussel{
+    position: relative;
+}
+.caroussel-prev{
+    position: absolute;
+    left: -10px;
+    top:50%;
+    transform: translateY(-50%) scale(1);
+    cursor: pointer;
+    text-align: center;
+    z-index: 1;
+    transition: .5s ease-in-out;
+    border-radius: 50%;
+    background-color: #e8e8e8;
+    width:32px;
+    height:32px;
+    box-shadow: 0 0 3px 1px rgba(0,0,0,.3);
+}
+.caroussel-next{
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    transform: translateY(-50%) scale(1);
+    cursor: pointer;
+    text-align: center;
+    z-index: 1;
+    transition: .5s ease-in-out;
+    border-radius: 50%;
+    background-color: #e8e8e8;
+    width:32px;
+    height:32px;
+    box-shadow: 0 0 3px 1px rgba(0,0,0,.3);
+}
+.caroussel-element{
+    transition: .5s ease-in-out;
+}
+.translate-left{
+    transform: translateX(-100%);
+}
+.translate-right{
+    transform: translateX(100%);
+}
+
+.delete{
+    transform: scale(0);
+    opacity: 0;
+}
+.appear{
+    transform: scale(1) ;
+    opacity: 1;
+}
+
+.delete-button{
+    transform: translateY(-50%) scale(0) ;
+    opacity: 0;
+}
+.appear-button{
+    transform: translateY(-50%) scale(1) ;
+    opacity: 1;
+}
