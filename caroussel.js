@@ -9,9 +9,9 @@ function caroussel(config, data){
     const carousselDiv = document.querySelector("."+this.CLASS);
 
     carousselDiv.innerHTML += `<div class="caroussel-prev delete-button">&lt;</div><div class='caroussel-elements row'>`;
-    for (let i=0; i<MAX_ELEMENT; i++){
+    for (let i=0; i<this.MAX_ELEMENT; i++){
         let div = "<div class='col-2 caroussel-element'>";
-        div += `<a href="#"><img src='${data[i].image}' class="w-100"/></a>`;
+        div += `<a href="${data[i].link}"><img src='${data[i].image}' class="w-100"/></a>`;
         div += "</div>";
         document.querySelector(".caroussel-elements").innerHTML += div;
     }
@@ -30,7 +30,7 @@ function caroussel(config, data){
         elements.forEach((elm)=>{
             elm.classList.add("translate-left");
         });
-        setTimeout(()=>{
+        const timeout = setTimeout(()=>{
             elements[0].remove();
             elements.forEach((elm)=>{
                 elm.classList.remove("translate-left");
@@ -39,7 +39,8 @@ function caroussel(config, data){
             div += `<a href="#"><img src='${data[this.currentMax-1].image}' class="w-100"/></a>`;
             div += "</div>";
             document.querySelector(".caroussel-elements").innerHTML += div;
-        },DELAY_TIME);
+            clearTimeout(timeout);
+        },this.DELAY_TIME);
         this.checkButtons();
     });
 
@@ -47,20 +48,21 @@ function caroussel(config, data){
         if(this.currentMax <= this.MAX_ELEMENT){return;}
         this.currentMax--;
         const elements = document.querySelectorAll(".caroussel-element");
-        elements[MAX_ELEMENT-1].classList.add('delete');
+        elements[this.MAX_ELEMENT-1].classList.add('delete');
         elements.forEach((elm)=>{
             elm.classList.add("translate-right");
         });
-        setTimeout(()=>{
-            elements[MAX_ELEMENT-1].remove();
+        const timeout = setTimeout(()=>{
+            elements[this.MAX_ELEMENT-1].remove();
             elements.forEach((elm)=>{
                 elm.classList.remove("translate-right");
             });
             let div = "<div class='col-2 caroussel-element'>";
-            div += `<a href="#"><img src='${data[currentMax -MAX_ELEMENT].image}' class="w-100"/></a>`;
+            div += `<a href="#"><img src='${data[this.currentMax -this.MAX_ELEMENT].image}' class="w-100"/></a>`;
             div += "</div>";
             document.querySelector(".caroussel-elements").innerHTML = div + document.querySelector(".caroussel-elements").innerHTML ;
-        },DELAY_TIME);
+            clearTimeout(timeout);
+        },this.DELAY_TIME);
         this.checkButtons();
     });
 
