@@ -30,16 +30,21 @@ function caroussel(config, data){
         elements.forEach((elm)=>{
             elm.classList.add("translate-left");
         });
-        const timeout = setTimeout(()=>{
+        setTimeout(()=>{
             elements[0].remove();
             elements.forEach((elm)=>{
                 elm.classList.remove("translate-left");
             });
-            let div = "<div class='col-2 caroussel-element'>";
+            let div = "<div class='col-2 caroussel-element delete'>";
             div += `<a href="#"><img src='${data[this.currentMax-1].image}' class="w-100"/></a>`;
             div += "</div>";
             document.querySelector(".caroussel-elements").innerHTML += div;
-            clearTimeout(timeout);
+            setTimeout(()=>{
+                const newElement = document.querySelector(".caroussel-element.delete");
+                newElement.classList.remove("delete");
+                newElement.classList.add("appear");
+                newElement.classList.remove("appear");
+            }, 1);
         },this.DELAY_TIME);
         this.checkButtons();
     });
@@ -52,16 +57,21 @@ function caroussel(config, data){
         elements.forEach((elm)=>{
             elm.classList.add("translate-right");
         });
-        const timeout = setTimeout(()=>{
+        setTimeout(()=>{
             elements[this.MAX_ELEMENT-1].remove();
             elements.forEach((elm)=>{
                 elm.classList.remove("translate-right");
             });
-            let div = "<div class='col-2 caroussel-element'>";
+            let div = "<div class='col-2 caroussel-element delete'>";
             div += `<a href="#"><img src='${data[this.currentMax -this.MAX_ELEMENT].image}' class="w-100"/></a>`;
             div += "</div>";
             document.querySelector(".caroussel-elements").innerHTML = div + document.querySelector(".caroussel-elements").innerHTML ;
-            clearTimeout(timeout);
+            setTimeout(()=>{
+                const newElement = document.querySelector(".caroussel-element.delete");
+                newElement.classList.remove("delete");
+                newElement.classList.add("appear");
+                newElement.classList.remove("appear");
+            }, 1);
         },this.DELAY_TIME);
         this.checkButtons();
     });
@@ -82,5 +92,4 @@ function caroussel(config, data){
             prevButton.classList.add("appear-button");
         }
     }
-
 }
